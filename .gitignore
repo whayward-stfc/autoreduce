@@ -49,3 +49,6 @@ vault.yml
 
 # Ignore downloaded graphs
 Webapp/autoreduce_webapp/static/graphs/
+
+#Ignore django cache files
+*.djcache
