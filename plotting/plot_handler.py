@@ -123,33 +123,11 @@ class PlotHandler:
 
     def get_plot_file(self):
         """
-        Searches for and retrieves a plot file from CEPH.
-        Might find multiple files (e.g. if more than one plot_type is specified),
-        but will only copy over one.
-        :return: (str) local path to downloaded files OR None if no files found
+        Attempts to retrieve plot files, first from the plot cache, and then from CEPH
+        :return: (list) local path to downloaded files OR None if no files found
         """
         _existing_plot_files = self._get_plot_files_locally()
         if _existing_plot_files:
             return _existing_plot_files
-
         _existing_plot_files = self._check_for_plot_files()
-        local_plot_paths = []
-        if _existing_plot_files:
-            client = SFTPClient()
-            for plot_file in _existing_plot_files:
-                # Generate paths to data on server and destination on local machine
-                _server_path = self.server_dir + plot_file
-                _local_path = os.path.join(self.static_graph_dir, plot_file)
-
-                try:
-                    client.retrieve(server_file_path=_server_path,
-                                    local_file_path=_local_path,
-                                    override=True)
-                    LOGGER.info('File \'%s\' found and saved to %s', _server_path, _local_path)
-                except RuntimeError:
-                    LOGGER.error("File \'%s\' does not exist", _server_path)
-                    return None
-                local_plot_paths.append(f'/static/graphs/{plot_file}')  # shortcut to static dir
-            return local_plot_paths
-        # No files found
-        return None
+        return self._get_plot_files_remotely(_existing_plot_files)
