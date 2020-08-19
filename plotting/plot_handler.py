@@ -13,7 +13,8 @@ Instructing the Plotting factory to build an IFrame based on the above
 """
 import logging
 import os
-import re
+
+from django.core.cache import caches
 
 from utils.clients.sftp_client import SFTPClient
 from utils.project.structure import get_project_root
