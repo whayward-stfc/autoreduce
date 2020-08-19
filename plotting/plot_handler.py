@@ -44,6 +44,7 @@ class PlotHandler:
         self.static_graph_dir = os.path.join(get_project_root(), 'WebApp',
                                              'autoreduce_webapp', 'static',
                                              'graphs')
+        self.file_regex = self._generate_file_name_regex()
 
     def _generate_file_name_regex(self):
         """
