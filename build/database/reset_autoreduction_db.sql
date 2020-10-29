@@ -4,8 +4,8 @@
 USE mysql;
 
 --Assuming user exists, so delete it if it does
-drop user test-user@localhost;
-flush privileges;
+DROP USER 'test-user'@'localhost';
+FLUSH PRIVILEGES;
 
 CREATE USER 'test-user'@'localhost' IDENTIFIED BY 'Abcdefg!123';
 GRANT ALL ON autoreduction.* TO 'test-user'@'localhost';
