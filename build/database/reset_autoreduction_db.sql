@@ -6,8 +6,8 @@ USE mysql;
 
 FLUSH PRIVILEGES;
 
-CREATE USER 'test-user'@'localhost' IDENTIFIED BY 'Abcdefg!123';
-GRANT ALL ON autoreduction.* TO 'test-user'@'localhost';
+CREATE USER 'test-user'@'localhost:3306' IDENTIFIED BY 'pass';
+GRANT ALL ON autoreduction.* TO 'test-user'@'localhost:3306';
 FLUSH PRIVILEGES;
 
 -- Create DB
