@@ -2,7 +2,8 @@
 -- Starting with MySQL 8 you no longer can (implicitly) create a user using the GRANT command. 
 -- Use CREATE USER instead, followed by the GRANT statement as below
 USE mysql;
-CREATE USER 'test-user'@'localhost' IDENTIFIED BY 'Abcdefg!123';
+-- Commenting out this line, assuming we've already created the user.
+--CREATE USER 'test-user'@'localhost' IDENTIFIED BY 'Abcdefg!123';
 GRANT ALL ON autoreduction.* TO 'test-user'@'localhost';
 FLUSH PRIVILEGES;
 
