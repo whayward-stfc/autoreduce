@@ -3,7 +3,7 @@
 -- Use CREATE USER instead, followed by the GRANT statement as below
 USE mysql;
 
-
+DROP USER test-user@localhost;
 FLUSH PRIVILEGES;
 
 CREATE USER 'test-user'@'localhost:3306' IDENTIFIED BY 'pass';
